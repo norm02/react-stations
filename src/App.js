@@ -18,7 +18,7 @@ export const App = () => {
   }
 
   return (
-    <header>
+    <header className="App-header">
       <h1>Dogアプリ</h1>
       <h2>犬の画像を表示するアプリです</h2>
       <img src={dogurl} alt="Displayed" />
