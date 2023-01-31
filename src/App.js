@@ -9,22 +9,20 @@ import './App.css'
  */
 export const App = () => {
   const [dogurl, setDogurl] = useState(
-    'https://images.dog.ceo/breeds/spaniel-brittany/n02101388_6057.jpg',
+    'https://images.dog.ceo/breeds/hound-english/n02089973_1132.jpg',
   )
-  console.log('click')
-
-  const buttonclick = () => {
-    const newdogurl =
-      'https://images.dog.ceo/breeds/hound-english/n02089973_1132.jpg'
-    setDogurl(newdogurl)
+  const onclick_event = () => {
+    fetch('https://dog.ceo/api/breeds/image/random')
+      .then(res => res.json())
+      .then(result => setDogurl(result.message))
   }
 
   return (
     <header>
       <h1>Dogアプリ</h1>
-      <description>犬の画像を表示するアプリです</description>
+      <h2>犬の画像を表示するアプリです</h2>
       <img src={dogurl} alt="Displayed" />
-      <button type="button" onClick={e => setDogurl(buttonclick)}>
+      <button type="button" onClick={onclick_event}>
         更新
       </button>
     </header>
