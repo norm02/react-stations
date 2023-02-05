@@ -1,9 +1,11 @@
 // DO NOT DELETE
 import React, { useEffect, useState } from 'react'
+import { BreedsSelect } from './BreedsSelect'
 import './App.css'
 
 export const DogListContainer = () => {
   const [breeds, setBreeds] = useState([])
+  const [selectedBreed, setSelectedBreed] = useState('')
   useEffect(() => {
     fetch('https://dog.ceo/api/breeds/list/all')
       .then(res => res.json())
@@ -12,13 +14,12 @@ export const DogListContainer = () => {
         setBreeds(Object.keys(list))
       })
   }, [])
+  const onchange_handle = e => setSelectedBreed(e.target.value)
   return (
-    <select name="breed">
-      {breeds.map(breed => (
-        <option key={breed} value={breed}>
-          {breed}
-        </option>
-      ))}
-    </select>
+    <BreedsSelect
+      breeds={breeds}
+      select={selectedBreed}
+      change={onchange_handle}
+    ></BreedsSelect>
   )
 }
